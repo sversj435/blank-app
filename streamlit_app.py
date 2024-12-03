@@ -4,31 +4,37 @@ def combat_round(player1, player2):
     atk1, def1, action1, predict1, hp1 = player1.values()
     atk2, def2, action2, predict2, hp2 = player2.values()
 
-    if action1.lower() == 'a':
+    # 将行为和预测统一为小写字母，简化后续逻辑
+    action1 = "a" if action1 == "攻击" else "d"
+    predict1 = "a" if predict1 == "攻击" else "d"
+    action2 = "a" if action2 == "攻击" else "d"
+    predict2 = "a" if predict2 == "攻击" else "d"
+
+    if action1 == 'a':  # 玩家1选择攻击
         atk1 *= 2
-        if predict1.lower() == 'a' and action2.lower() == 'a':
+        if predict1 == 'a' and action2 == 'a':
             def1 *= 1.5
-        elif predict1.lower() == 'd' and action2.lower() == 'd':
+        elif predict1 == 'd' and action2 == 'd':
             atk1 *= 2.5 / 2
-    elif action1.lower() == 'd':
+    elif action1 == 'd':  # 玩家1选择防御
         def1 *= 1.5
-        if predict1.lower() == 'a' and action2.lower() == 'a':
+        if predict1 == 'a' and action2 == 'a':
             def1 *= 1.5
-        elif predict1.lower() == 'd' and action2.lower() == 'd':
+        elif predict1 == 'd' and action2 == 'd':
             atk1 *= 2.5 / 2
         atk1 = 0
 
-    if action2.lower() == 'a':
+    if action2 == 'a':  # 玩家2选择攻击
         atk2 *= 2
-        if predict2.lower() == 'a' and action1.lower() == 'a':
+        if predict2 == 'a' and action1 == 'a':
             def2 *= 1.5
-        elif predict2.lower() == 'd' and action1.lower() == 'd':
+        elif predict2 == 'd' and action1 == 'd':
             atk2 *= 2.5 / 2
-    elif action2.lower() == 'd':
+    elif action2 == 'd':  # 玩家2选择防御
         def2 *= 1.5
-        if predict2.lower() == 'a' and action1.lower() == 'a':
+        if predict2 == 'a' and action1 == 'a':
             def2 *= 1.5
-        elif predict2.lower() == 'd' and action1.lower() == 'd':
+        elif predict2 == 'd' and action1 == 'd':
             atk2 *= 2.5 / 2
         atk2 = 0
 
@@ -47,15 +53,15 @@ st.title("回合制战斗模拟器")
 st.header("玩家 1 输入")
 atk1 = st.number_input("玩家1的攻击力", min_value=0.0, value=10.0)
 def1 = st.number_input("玩家1的防御力", min_value=0.0, value=10.0)
-action1 = st.selectbox("玩家1的行为", ["A", "D"])
-predict1 = st.selectbox("玩家1预测对手行为", ["A", "D"])
+action1 = st.selectbox("玩家1的行为", ["攻击", "防御"])
+predict1 = st.selectbox("玩家1预测对手行为", ["攻击", "防御"])
 hp1 = st.number_input("玩家1的血量", min_value=0.0, value=100.0)
 
 st.header("玩家 2 输入")
 atk2 = st.number_input("玩家2的攻击力", min_value=0.0, value=10.0)
 def2 = st.number_input("玩家2的防御力", min_value=0.0, value=10.0)
-action2 = st.selectbox("玩家2的行为", ["A", "D"])
-predict2 = st.selectbox("玩家2预测对手行为", ["A", "D"])
+action2 = st.selectbox("玩家2的行为", ["攻击", "防御"])
+predict2 = st.selectbox("玩家2预测对手行为", ["攻击", "防御"])
 hp2 = st.number_input("玩家2的血量", min_value=0.0, value=100.0)
 
 if st.button("开始战斗！"):
