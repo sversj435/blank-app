@@ -48,7 +48,7 @@ def combat_round(player1, player2):
 
 
 # Streamlit Application
-st.title("回合制战斗模拟器")
+st.title("战斗模拟")
 
 st.header("玩家 1 输入")
 atk1 = st.number_input("玩家1的攻击力", min_value=0.0, value=10.0)
@@ -65,7 +65,7 @@ predict2 = st.selectbox("玩家2预测对手行为", ["攻击", "防御"])
 hp2 = st.number_input("玩家2的血量", min_value=0.0, value=100.0)
 
 if st.button("开始战斗！"):
-    st.write("按钮触发成功，开始计算...")
+    st.write("开始计算...")
     player1 = {"ATK": atk1, "DEF": def1, "ACTION": action1, "PREDICT": predict1, "HP": hp1}
     player2 = {"ATK": atk2, "DEF": def2, "ACTION": action2, "PREDICT": predict2, "HP": hp2}
 
